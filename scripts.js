@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 1000); // CSS transition duration
   }
 
-  function textTransition(triggerIndex) {
+  function textTransition(section, girlName, triggerIndex) {
     // Define new text values for each trigger point
     const dates = [originalDateTLTL, '2050', '2080'];
     const ages = [originalAgeTLTL, '50', '80'];
