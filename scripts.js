@@ -1,16 +1,24 @@
 window.addEventListener('DOMContentLoaded', () => {
   const currentImageTLTL = document.querySelector('#tltl-image');
   const currentImageGL = document.querySelector('#gl-image');
-  const storyDateTLTL = document.querySelector('#story-date-tltl'); 
-  const storyAgeTLTL = document.querySelector('#story-age-tltl');
-  const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
+    // Selecting TLTL text elements
+    const storyDateTLTL = document.querySelector('#story-date-tltl');
+    const storyAgeTLTL = document.querySelector('#story-age-tltl');
+    const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
+    // Selecting GL text elements
+    const storyDateGL = document.querySelector('#story-date-gl');
+    const storyAgeGL = document.querySelector('#story-age-gl');
+    const sceneSettingGL = document.querySelector('#scene-setting-gl');
 
-  // Store the original srcsets for TLTL and GL images
-  const originalImageTLTL = currentImageTLTL.srcset;
-  const originalImageGL = currentImageGL.srcset;
-  const originalDateTLTL = storyDateTLTL.textContent;
-  const originalAgeTLTL = storyAgeTLTL.textContent;
-  const originalSceneSettingTLTL = sceneSettingTLTL.textContent;
+    // Store the original srcsets and text content for TLTL and GL elements
+    const originalImageTLTL = currentImageTLTL.srcset;
+    const originalImageGL = currentImageGL.srcset;
+    const originalDateTLTL = storyDateTLTL.textContent;
+    const originalAgeTLTL = storyAgeTLTL.textContent;
+    const originalSceneSettingTLTL = sceneSettingTLTL.textContent;
+    const originalDateGL = storyDateGL.textContent;
+    const originalAgeGL = storyAgeGL.textContent;
+    const originalSceneSettingGL = sceneSettingGL.textContent;
 
   let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -96,19 +104,31 @@ window.addEventListener('DOMContentLoaded', () => {
     function textTransition(section, triggerIndex) {
         const dates = [originalDateTLTL, '2050', '2080'];
         const ages = [originalAgeTLTL, '50', '80'];
-        let settings;
+        let settingsUpdates, originalDate, originalAge, originalSetting, storyDate, storyAge, sceneSetting;
 
         // Select the correct scene settings based on section
         if (section === 'TLTL') {
-          settings = sceneSettingsTLTL.updates;
+            settingsUpdates = sceneSettingsTLTL.updates;
+            originalDate = originalDateTLTL;
+            originalAge = originalAgeTLTL;
+            originalSetting = originalSceneSettingTLTL;
+            storyDate = storyDateTLTL;
+            storyAge = storyAgeTLTL;
+            sceneSetting = sceneSettingTLTL;
         } else {
-          settings = sceneSettingsGL.updates;
+            settingsUpdates = sceneSettingsGL.updates;
+            originalDate = originalDateGL;
+            originalAge = originalAgeGL;
+            originalSetting = originalSceneSettingGL;
+            storyDate = storyDateGL;
+            storyAge = storyAgeGL;
+            sceneSetting = sceneSettingGL;
         }
 
         // Apply the updates if triggerIndex is valid, otherwise revert to original
-        storyDateTLTL.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDateTLTL;
-        storyAgeTLTL.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAgeTLTL;
-        sceneSettingTLTL.textContent = triggerIndex >= 0 ? settings[triggerIndex] : sceneSettingsTLTL.original;
+        storyDate.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDate;
+        storyAge.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge;
+        sceneSetting.textContent = triggerIndex >= 0 ? settingsUpdates[triggerIndex] : originalSetting;
     }
 
 	['TLTL', 'GL'].forEach((section) => {
