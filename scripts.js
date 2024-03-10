@@ -1,10 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
   const currentImageTLTL = document.querySelector('#tltl-image');
   const currentImageGL = document.querySelector('#gl-image');
+  const storyDateTLTL = document.querySelector('#story-date-tltl');
+  const storyAgeTLTL = document.querySelector('#story-age-tltl');
+  const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
 
   // Store the original srcsets for TLTL and GL images
   const originalImageTLTL = currentImageTLTL.srcset;
   const originalImageGL = currentImageGL.srcset;
+  const originalDateTLTL = storyDateTLTL.textContent;
+  const originalAgeTLTL = storyAgeTLTL.textContent;
+  const originalSceneSettingTLTL = sceneSettingTLTL.textContent;
 
   let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -24,6 +30,22 @@ window.addEventListener('DOMContentLoaded', () => {
         currentImage.style.opacity = 1;
       }, 10); // Short delay for fade-in effect
     }, 1000); // CSS transition duration
+  }
+
+  function textTransition(triggerIndex) {
+    // Define new text values for each trigger point
+    const dates = [originalDateTLTL, '2050', '2080'];
+    const ages = [originalAgeTLTL, '50', '80'];
+    const settings = [
+      originalSceneSettingTLTL,
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'Pellentesque vitae velit ex. Mauris euismod at libero in.',
+    ];
+
+    // Update text content based on trigger index
+    storyDateTLTL.textContent = dates[triggerIndex + 1];
+    storyAgeTLTL.textContent = ages[triggerIndex + 1];
+    sceneSettingTLTL.textContent = settings[triggerIndex + 1];
   }
 
   window.addEventListener('scroll', () => {
@@ -69,13 +91,16 @@ window.addEventListener('DOMContentLoaded', () => {
               if (i === 2) {
                 // If at the first trigger, revert to the original image
                 imageTransition([], section, -1);
+                textTransition(-1);
               } else {
                 // If not at the first trigger but scrolling up, show the first image in the array
                 imageTransition(images, section, 0);
+                textTransition(0);
               }
             } else {
               // Logic for scrolling down: change the image based on the current index
               imageTransition(images, section, index);
+              textTransition(index);
             }
 
             break; // Break after finding the first visible trigger
