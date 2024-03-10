@@ -1,9 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
   const currentImageTLTL = document.querySelector('#tltl-image');
   const currentImageGL = document.querySelector('#gl-image');
-  const storyDateTLTL = document.querySelector('#story-date-tltl');
+  const storyDateTLTL = document.querySelector('#story-date-tltl'); 
   const storyAgeTLTL = document.querySelector('#story-age-tltl');
   const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
+  let sceneSettingsTLTL = {}, sceneSettingsGL = {};
 
   // Store the original srcsets for TLTL and GL images
   const originalImageTLTL = currentImageTLTL.srcset;
@@ -36,16 +37,19 @@ window.addEventListener('DOMContentLoaded', () => {
     // Define new text values for each trigger point
     const dates = [originalDateTLTL, '2050', '2080'];
     const ages = [originalAgeTLTL, '50', '80'];
-    const settings = [
-      originalSceneSettingTLTL,
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      'Pellentesque vitae velit ex. Mauris euismod at libero in.',
-    ];
+    let settings;
+
+    // Determine the correct scene setting based on section and girlName
+    if (section === 'TLTL') {
+      settings = sceneSettingsTLTL[girlName].updates;
+    } else {
+      settings = sceneSettingsGL[girlName].updates;
+    }
 
     // Update text content based on trigger index
     storyDateTLTL.textContent = dates[triggerIndex + 1];
     storyAgeTLTL.textContent = ages[triggerIndex + 1];
-    sceneSettingTLTL.textContent = settings[triggerIndex + 1];
+    sceneSettingTLTL.textContent = settings[triggerIndex] || settings.original;
   }
 
   window.addEventListener('scroll', () => {
@@ -61,18 +65,50 @@ window.addEventListener('DOMContentLoaded', () => {
         case 'ayotola':
           imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34ab414391d66eeb200_ayotola_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f349595807266e8de4f2_ayotola_tltl_3.webp']; // Replace with actual URLs
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a7505cd1896f6c899_ayotola_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a4eadbe338452aa7f_ayotola_gl_3.webp'];
+          sceneSettingsTLTL = {
+            original: originalSceneSettingTLTL,
+            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+          };
+          sceneSettingsGL = {
+            original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
+            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+          };
           break;
         case 'carla':
           imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543dc56d9428dea74_carla_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f355e3e50611260717a3_carla_tltl_3.webp']; // Replace with actual URLs
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f356ccc4cb9c461e1697_carla_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543ec5cef0aaa410a_carla_gl_3.webp'];
+          sceneSettingsTLTL = {
+            original: originalSceneSettingTLTL,
+            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+          };
+          sceneSettingsGL = {
+            original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
+            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+          };
           break;
           case 'samiha':
           imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c8f26f56121a2268a_samiha_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c520cbe484ca10f75_samiha_tltl_3.webp']; // Replace with actual URLs
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c3ab226220894f482_samiha_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37cfc8b90e05abdc3a4_samiha_gl_3.webp'];
+          sceneSettingsTLTL = {
+            original: originalSceneSettingTLTL,
+            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+          };
+          sceneSettingsGL = {
+            original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
+            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+          };
           break;
           case 'shu':
           imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3649878795361febe6b_shu_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f364acd492563da6fdef_shu_tltl_3.webp']; // Replace with actual URLs
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3642acb33427e4d4df3_shu_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f365ea46f8e32a736a9b_shu_gl_3.webp'];
+          sceneSettingsTLTL = {
+            original: originalSceneSettingTLTL,
+            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+          };
+          sceneSettingsGL = {
+            original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
+            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+          };
           break;
         // Add more cases as needed
       }
@@ -91,16 +127,16 @@ window.addEventListener('DOMContentLoaded', () => {
               if (i === 2) {
                 // If at the first trigger, revert to the original image
                 imageTransition([], section, -1);
-                textTransition(-1);
+                textTransition(section, girlName, -1);
               } else {
                 // If not at the first trigger but scrolling up, show the first image in the array
                 imageTransition(images, section, 0);
-                textTransition(0);
+                textTransition(section, girlName, 0);
               }
             } else {
               // Logic for scrolling down: change the image based on the current index
               imageTransition(images, section, index);
-              textTransition(index);
+              textTransition(section, girlName, index);
             }
 
             break; // Break after finding the first visible trigger
