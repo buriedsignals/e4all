@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const storyDateTLTL = document.querySelector('#story-date-tltl'); 
   const storyAgeTLTL = document.querySelector('#story-age-tltl');
   const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
-  let sceneSettingsTLTL = {}, sceneSettingsGL = {};
 
   // Store the original srcsets for TLTL and GL images
   const originalImageTLTL = currentImageTLTL.srcset;
@@ -33,25 +32,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 1000); // CSS transition duration
   }
 
-  function textTransition(section, girlName, triggerIndex) {
-    // Define new text values for each trigger point
-    const dates = [originalDateTLTL, '2050', '2080'];
-    const ages = [originalAgeTLTL, '50', '80'];
-    let settings;
-
-    // Determine the correct scene setting based on section and girlName
-    if (section === 'TLTL') {
-      settings = sceneSettingsTLTL[girlName].updates;
-    } else {
-      settings = sceneSettingsGL[girlName].updates;
-    }
-
-    // Update text content based on trigger index
-    storyDateTLTL.textContent = dates[triggerIndex + 1];
-    storyAgeTLTL.textContent = ages[triggerIndex + 1];
-    sceneSettingTLTL.textContent = settings[triggerIndex] || settings.original;
-  }
-
   window.addEventListener('scroll', () => {
     const girlDiv = document.querySelector('div[id^="story-"]');
     if (girlDiv) {
@@ -59,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
       let st = window.pageYOffset || document.documentElement.scrollTop;
       let direction = st > lastScrollTop ? 'down' : 'up';
 
-      let imagesTLTL = [], imagesGL = [];
+      let imagesTLTL = [], imagesGL = [], sceneSettingsTLTL = {}, sceneSettingsGL = {};
       // Populate imagesTLTL and imagesGL based on girlName
       switch (girlName) {
         case 'ayotola':
@@ -113,7 +93,25 @@ window.addEventListener('DOMContentLoaded', () => {
         // Add more cases as needed
       }
 
-	      ['TLTL', 'GL'].forEach((section) => {
+    function textTransition(section, triggerIndex) {
+        const dates = [originalDateTLTL, '2050', '2080'];
+        const ages = [originalAgeTLTL, '50', '80'];
+        let settings;
+
+        // Select the correct scene settings based on section
+        if (section === 'TLTL') {
+          settings = sceneSettingsTLTL.updates;
+        } else {
+          settings = sceneSettingsGL.updates;
+        }
+
+        // Apply the updates if triggerIndex is valid, otherwise revert to original
+        storyDateTLTL.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDateTLTL;
+        storyAgeTLTL.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAgeTLTL;
+        sceneSettingTLTL.textContent = triggerIndex >= 0 ? settings[triggerIndex] : sceneSettingsTLTL.original;
+    }
+
+	['TLTL', 'GL'].forEach((section) => {
         let images = section === 'TLTL' ? imagesTLTL : imagesGL;
         // Adjusted to check only for the defined trigger points
         for (let i = 4; i >= 2; i -= 2) {
@@ -127,22 +125,22 @@ window.addEventListener('DOMContentLoaded', () => {
               if (i === 2) {
                 // If at the first trigger, revert to the original image
                 imageTransition([], section, -1);
-                textTransition(section, girlName, -1);
+                textTransition(section, -1);
               } else {
                 // If not at the first trigger but scrolling up, show the first image in the array
                 imageTransition(images, section, 0);
-                textTransition(section, girlName, 0);
+                textTransition(section, 0);
               }
             } else {
               // Logic for scrolling down: change the image based on the current index
               imageTransition(images, section, index);
-              textTransition(section, girlName, index);
+              textTransition(section, index);
             }
 
             break; // Break after finding the first visible trigger
           }
         }
-      });
+    });
 
       lastScrollTop = st <= 0 ? 0 : st; // Update lastScrollTop for the next scroll event
     }
