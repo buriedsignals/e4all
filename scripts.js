@@ -1,82 +1,89 @@
 window.addEventListener('DOMContentLoaded', () => {
-const currentImage1 = document.querySelector('.frame-image');
-const currentImage2 = document.querySelector('.frame-image-2');
-const originalImage1 = currentImage1.srcset;
-    const originalImage2 = currentImage2.srcset;
+  const currentImageTLTL = document.querySelector('#tltl-image');
+  const currentImageGL = document.querySelector('#gl-image');
 
-let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // Store the original srcsets for TLTL and GL images
+  const originalImageTLTL = currentImageTLTL.srcset;
+  const originalImageGL = currentImageGL.srcset;
 
-function isInViewport(element) {
+  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  function isInViewport(element) {
     const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-}
+    return rect.top < window.innerHeight && rect.bottom >= 0;
+  }
 
-function imageTransition(url, scrollyId) {
-let currentImage;
+  function imageTransition(urls, sectionId, triggerIndex) {
+    let currentImage = sectionId === "TLTL" ? currentImageTLTL : currentImageGL;
+		let srcsetToUse = triggerIndex >= 0 ? urls[triggerIndex] : (sectionId === "TLTL" ? originalImageTLTL : originalImageGL);
 
-if (scrollyId === "scrolly-1") {
-    currentImage = currentImage1;
-} else if (scrollyId === "scrolly-2") {
-    currentImage = currentImage2;
-}
-
-if (currentImage) {
-    // Fade out the current image
     currentImage.style.opacity = 0;
-
-    // Change the image srcset after a short delay
     setTimeout(() => {
-    currentImage.srcset = url;
-
-    // Fade the image back in
-    setTimeout(() => {
+      currentImage.srcset = srcsetToUse;
+      setTimeout(() => {
         currentImage.style.opacity = 1;
-    }, 100); // Delay for the srcset to take effect
-    }, 1000); // Matches the CSS transition duration
-}
-}
+      }, 10); // Short delay for fade-in effect
+    }, 1000); // CSS transition duration
+  }
 
-window.addEventListener('scroll', () => {
-    const chapterDiv = document.querySelector('div[id^="chapter-"]');
-    if (chapterDiv) {
-    const chapterId = chapterDiv.id;
-    const chapterNumber = chapterId.split('-')[1];
-    const triggerElement1Id = `chapter${chapterNumber}-scrolly1-text3`;
-    const triggerElement2Id = `chapter${chapterNumber}-scrolly2-text3`;
-    const triggerElement1 = document.getElementById(triggerElement1Id);
-    const triggerElement2 = document.getElementById(triggerElement2Id);
-    let st = window.pageYOffset || document.documentElement.scrollTop;
+  window.addEventListener('scroll', () => {
+    const girlDiv = document.querySelector('div[id^="story-"]');
+    if (girlDiv) {
+      const girlName = girlDiv.id.substring(6);
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      let direction = st > lastScrollTop ? 'down' : 'up';
 
-    // Define image variables for each chapter
-    let imageScrolly1, imageScrolly2;
-    switch (chapterId) {
-        case 'chapter-1':
-        imageScrolly1 = 'https://uploads-ssl.webflow.com/655a5e3e34bc8a89769ff74e/6583f8350811f7701cc61e05_space.webp'; 
-        imageScrolly2 = 'https://uploads-ssl.webflow.com/655a5e3e34bc8a89769ff74e/65b226a16c462911f79830ce_bedroom.webp';
-        break;
-        case 'chapter-2':
-        imageScrolly1 = 'https://uploads-ssl.webflow.com/655a5e3e34bc8a89769ff74e/65b226a261547626a7a3e9dd_beaming.webp';
-        imageScrolly2 = 'https://uploads-ssl.webflow.com/655a5e3e34bc8a89769ff74e/65b228b5ef2fd984b62ebb5c_London.webp'; // URL 
-        break;
+      let imagesTLTL = [], imagesGL = [];
+      // Populate imagesTLTL and imagesGL based on girlName
+      switch (girlName) {
+        case 'ayotola':
+          imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34ab414391d66eeb200_ayotola_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f349595807266e8de4f2_ayotola_tltl_3.webp']; // Replace with actual URLs
+          imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a7505cd1896f6c899_ayotola_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a4eadbe338452aa7f_ayotola_gl_3.webp'];
+          break;
+        case 'carla':
+          imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543dc56d9428dea74_carla_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f355e3e50611260717a3_carla_tltl_3.webp']; // Replace with actual URLs
+          imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f356ccc4cb9c461e1697_carla_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543ec5cef0aaa410a_carla_gl_3.webp'];
+          break;
+          case 'samiha':
+          imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c8f26f56121a2268a_samiha_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c520cbe484ca10f75_samiha_tltl_3.webp']; // Replace with actual URLs
+          imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c3ab226220894f482_samiha_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37cfc8b90e05abdc3a4_samiha_gl_3.webp'];
+          break;
+          case 'shu':
+          imagesTLTL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3649878795361febe6b_shu_tltl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f364acd492563da6fdef_shu_tltl_3.webp']; // Replace with actual URLs
+          imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3642acb33427e4d4df3_shu_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f365ea46f8e32a736a9b_shu_gl_3.webp'];
+          break;
         // Add more cases as needed
-    }
+      }
 
-    if (isInViewport(triggerElement1)) {
-        if (st > lastScrollTop) {
-        // Scrolling down in triggerElement1's viewport
-        imageTransition(imageScrolly1, "scrolly-1");
-        } else {
-        // Scrolling up in triggerElement1's viewport
-        imageTransition(originalImage1, "scrolly-1");
+	      ['TLTL', 'GL'].forEach((section) => {
+        let images = section === 'TLTL' ? imagesTLTL : imagesGL;
+        // Adjusted to check only for the defined trigger points
+        for (let i = 4; i >= 2; i -= 2) {
+          let triggerElementId = `${girlName}-${section.toLowerCase()}-${i}`;
+          let triggerElement = document.getElementById(triggerElementId);
+
+          if (triggerElement && isInViewport(triggerElement)) {
+            let index = (i / 2) - 1; // Calculate index based on trigger element
+
+            if (direction === 'up') {
+              if (i === 2) {
+                // If at the first trigger, revert to the original image
+                imageTransition([], section, -1);
+              } else {
+                // If not at the first trigger but scrolling up, show the first image in the array
+                imageTransition(images, section, 0);
+              }
+            } else {
+              // Logic for scrolling down: change the image based on the current index
+              imageTransition(images, section, index);
+            }
+
+            break; // Break after finding the first visible trigger
+          }
         }
-        } else if (isInViewport(triggerElement2)) {
-        if (st > lastScrollTop) {
-        imageTransition(imageScrolly2, "scrolly-2");
-        } else {
-        imageTransition(originalImage2, "scrolly-2");
-        }
+      });
+
+      lastScrollTop = st <= 0 ? 0 : st; // Update lastScrollTop for the next scroll event
     }
-    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-    }
-}, false);
+  }, false);
 });
