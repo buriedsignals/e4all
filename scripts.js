@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const originalAgeGL = storyAgeGL.textContent;
     const originalSceneSettingGL = sceneSettingGL.textContent;
 
-  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const girlDiv = document.querySelector('div[id^="story-"]');
     if (girlDiv) {
       const girlName = girlDiv.id.substring(6);
-      let st = window.pageYOffset || document.documentElement.scrollTop;
+      let st = window.scrollY || document.documentElement.scrollTop;
       let direction = st > lastScrollTop ? 'down' : 'up';
 
       let imagesTLTL = [], imagesGL = [], sceneSettingsTLTL = {}, sceneSettingsGL = {};
