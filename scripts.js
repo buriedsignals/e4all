@@ -55,11 +55,11 @@ window.addEventListener('DOMContentLoaded', () => {
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a7505cd1896f6c899_ayotola_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a4eadbe338452aa7f_ayotola_gl_3.webp'];
           sceneSettingsTLTL = {
             original: originalSceneSettingTLTL,
-            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+            updates: ['By the age of 30 Ayotola has four children, three girls and one boy.', 'With deadly floods becoming more frequent, Ayotola and her husband abandoned their house to the rising waters.']
           };
           sceneSettingsGL = {
             original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
-            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+            updates: ['Thanks to a government relocation program and her UBD, Ayotola and her parents have moved away from Lagos, threatened by the  rising waters. ', 'Aged 60, Ayotola retires but continues to serve on the advisory board of the multitrillion Nigeria Citizens Fund part time.']
           };
           break;
         case 'carla':
@@ -67,11 +67,11 @@ window.addEventListener('DOMContentLoaded', () => {
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f356ccc4cb9c461e1697_carla_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543ec5cef0aaa410a_carla_gl_3.webp'];
           sceneSettingsTLTL = {
             original: originalSceneSettingTLTL,
-            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+            updates: ['Carla works in a successful architecture business. She moves north to escape the extreme heat, but she feels it follows her no matter where she goes.', 'Carla still works long hours. Her sedentary lifestyle and processed food diet make her vulnerable to health conditions. She dies of diabetes at age 65.']
           };
           sceneSettingsGL = {
             original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
-            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+            updates: ['In Seattle, Carla has trained as an architect and designs passive homes for community housing, while her partner is a corruption analyst. ', 'Aged 60, Carla is able to retire. She lives in a passive home that she designed herself and still gets the UBD from the Citizen’s Fund.']
           };
           break;
           case 'samiha':
@@ -79,11 +79,11 @@ window.addEventListener('DOMContentLoaded', () => {
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c3ab226220894f482_samiha_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37cfc8b90e05abdc3a4_samiha_gl_3.webp'];
           sceneSettingsTLTL = {
             original: originalSceneSettingTLTL,
-            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+            updates: ['Samiha has three children but lost her job in a clothes factory as Dhaka is progressively abandoned to the flash floods. ', 'Samiha lives in a settlement camp just outside of Dinajpur.']
           };
           sceneSettingsGL = {
             original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
-            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+            updates: ['Samiha is now a food engineer, developing saltwater-resistant grains to increase yields.', 'Samiha’s retirement is financed through the national pensions scheme and UBD, and she is writing a history of Bangladeshi women’s rights.']
           };
           break;
           case 'shu':
@@ -91,11 +91,11 @@ window.addEventListener('DOMContentLoaded', () => {
           imagesGL = ['https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3642acb33427e4d4df3_shu_gl_2.webp', 'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f365ea46f8e32a736a9b_shu_gl_3.webp'];
           sceneSettingsTLTL = {
             original: originalSceneSettingTLTL,
-            updates: ['Lorem ipsum dolor sit TLTL Ayotola 1', 'Dolor sit amet TLTL Ayotola 2']
+            updates: ['Shu is now a hydrology engineer. Frequent floods and droughts threaten the food and economic security of hundreds of millions of people.', 'Shu, by now a legend among hydrologists due to her flood-management skills, occasionally still teaches Chinese students as professor emeritus.']
           };
           sceneSettingsGL = {
             original: originalSceneSettingTLTL, // Assuming you meant to have an originalSceneSettingGL
-            updates: ['Lorem ipsum dolor sit GL Ayotola 1', 'Dolor sit amet GL Ayotola 2']
+            updates: ['Shu has chosen not to have kids. She spends her free time managing a huge fleet of shared electric carpools.', 'Shu reflects on how they solved their river pollution challenges in China and is still amazed that river dolphins thrive in the waters of her city.']
           };
           break;
         // Add more cases as needed
