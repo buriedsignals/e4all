@@ -11,38 +11,44 @@ function init() {
 
     function onMouseEnter(e) {
       const el = e.target.parentNode.parentNode;
-      const location = el.querySelector('.card-location');
-      const name = el.querySelector('.card-name');
-      const description = el.querySelector('.card-description');
+      // const location = el.querySelector('.card-location');
+      // const name = el.querySelector('.card-name');
+      // const description = el.querySelector('.card-description');
+      const image = el.querySelector('img');
       const buttonHover = el.querySelector('.card-button_hover');
       const buttonTextHover = el.querySelector('.card-button_text_hover');
       const timeline = gsap.timeline();
-      if (location) {
-        timeline.to(location, {
-          duration: 0.6,
-          position: "relative",
-          left: "50%",
-          x: "-50%",
-          ease: "power4.inOut"
-        });
-      }
-      if (name) {
-        timeline.to(name, {
-          duration: 0.6,
-          position: "relative",
-          left: "50%",
-          x: "-50%",
-          ease: "power4.inOut"
-        }, "<");
-      }
-      if (description) {
-        timeline.to(description, {
-          duration: 0.6,
-          opacity: 0,
-          y: "100px",
-          ease: "power4.inOut"
-        }, "<");
-      }
+      // if (location) {
+        // timeline.to(location, {
+        //   duration: 0.6,
+        //   position: "relative",
+        //   left: "50%",
+        //   x: "-50%",
+        //   ease: "power4.inOut"
+        // });
+      // }
+      // if (name) {
+        // timeline.to(name, {
+        //   duration: 0.6,
+        //   position: "relative",
+        //   left: "50%",
+        //   x: "-50%",
+        //   ease: "power4.inOut"
+        // }, "<");
+      // }
+      // if (description) {
+      //   timeline.to(description, {
+      //     duration: 0.6,
+      //     opacity: 0,
+      //     y: "100px",
+      //     ease: "power4.inOut"
+      //   }, "<");
+      // }
+      timeline.to(image, {
+        duration: 0.6,
+        scale: 1.025,
+        ease: "power4.inOut"
+      }, "<");
       timeline.to(buttonHover, {
         duration: 0.6,
         x: "0%"
@@ -55,30 +61,36 @@ function init() {
 
     function onMouseLeave(e) {
       const el = e.target.parentNode.parentNode;
-      const location = el.querySelector('.card-location');
-      const name = el.querySelector('.card-name');
-      const description = el.querySelector('.card-description');
+      // const location = el.querySelector('.card-location');
+      // const name = el.querySelector('.card-name');
+      // const description = el.querySelector('.card-description');
+      const image = el.querySelector('img');
       const buttonHover = el.querySelector('.card-button_hover');
       const buttonTextHover = el.querySelector('.card-button_text_hover');
       const timeline = gsap.timeline();
-      timeline.to(location, {
+      // timeline.to(location, {
+      //   duration: 0.6,
+      //   position: "relative",
+      //   left: "0%",
+      //   x: "0%",
+      //   ease: "power4.inOut"
+      // });
+      // timeline.to(name, {
+      //   duration: 0.6,
+      //   position: "relative",
+      //   left: "0%",
+      //   x: "0%",
+      //   ease: "power4.inOut"
+      // }, "<");
+      // timeline.to(description, {
+      //   duration: 0.6,
+      //   opacity: 1,
+      //   y: "0px",
+      //   ease: "power4.inOut"
+      // }, "<");
+      timeline.to(image, {
         duration: 0.6,
-        position: "relative",
-        left: "0%",
-        x: "0%",
-        ease: "power4.inOut"
-      });
-      timeline.to(name, {
-        duration: 0.6,
-        position: "relative",
-        left: "0%",
-        x: "0%",
-        ease: "power4.inOut"
-      }, "<");
-      timeline.to(description, {
-        duration: 0.6,
-        opacity: 1,
-        y: "0px",
+        scale: 1,
         ease: "power4.inOut"
       }, "<");
       timeline.to(buttonHover, {
@@ -295,7 +307,7 @@ function init() {
       scrollTrigger: {
         trigger: ".section-story-transition",
         start: "top top",
-        end: `+=200% bottom`,
+        end: `+=300% bottom`,
         scrub: true,
         pin: true,
         pinSpacing: true
@@ -336,9 +348,9 @@ function barbaInit() {
     const timeline = gsap.timeline();
     timeline.fromTo(el, {
       position: "fixed",
-      top: () => el.getBoundingClientRect().top + "px",
-      left: () => el.getBoundingClientRect().left + "px",
-      width: () => el.getBoundingClientRect().width + "px",
+      top: el.getBoundingClientRect().top + "px",
+      left: el.getBoundingClientRect().left + "px",
+      width: el.getBoundingClientRect().width + "px",
       zIndex: 999
     }, {
       duration: 0.8,
@@ -348,6 +360,10 @@ function barbaInit() {
       height: "100vh",
       ease: "power4.inOut"
     });
+    timeline.to(img, {
+      scale: 1,
+      ease: "none"
+    }, 0.1, "-=0.8");
     timeline.to(img, {
       borderRadius: 0,
       ease: "power4.inOut"
