@@ -346,7 +346,8 @@ function init() {
     gsap.to(".bio-description", {
       scrollTrigger: ".bio-description",
       opacity: 1,
-      y: "0%"
+      y: "0%",
+      ease: "power1.out"
     });
     gsap.set(".bio_arrow-flex", {
       opacity: 0,
@@ -355,7 +356,8 @@ function init() {
     gsap.to(".bio_arrow-flex", {
       scrollTrigger: ".bio_arrow-flex",
       opacity: 1,
-      y: "0%"
+      y: "0%",
+      ease: "power1.out"
     });
     document.querySelectorAll(".story-setting").forEach((el, index) => {
       gsap.set(el, {
@@ -364,8 +366,9 @@ function init() {
       });
       gsap.to(el, {
         scrollTrigger: el,
-        opacity: 1,
-        x: "0%"
+        opacity: 1.25,
+        x: "0%",
+        ease: "power1.out"
       });
     });
     document.querySelectorAll(".story-context").forEach((el, index) => {
@@ -376,7 +379,8 @@ function init() {
       gsap.to(el, {
         scrollTrigger: el,
         opacity: 1,
-        y: "0%"
+        y: "0%",
+        ease: "power1.out"
       });
     })
     document.querySelectorAll(".story-card").forEach((el, index) => {
@@ -387,7 +391,8 @@ function init() {
       gsap.to(el, {
         scrollTrigger: el,
         opacity: 1,
-        y: "0%"
+        y: "0%",
+        ease: "power1.out"
       });
     })
   }, 0);
