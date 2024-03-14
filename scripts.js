@@ -378,21 +378,28 @@ function barbaInit() {
     barba.wrapper.classList.remove('is-animating');
   });
   barba.hooks.enter(() => {
+    console.log('barba', barba)
     window.scrollTo(0, 0);
     init();
   });
   barba.init({
     transitions: [{
       async leave(e) {
+        if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
           await leaving(el);
+        } else {
+          return true
         }
       },
       enter(e) {
+        if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
           entering(e.next.container);
+        } else {
+          return true
         }
       }
     }]
