@@ -115,7 +115,6 @@ function init() {
       button.addEventListener('click', onMouseClick);
     });
       
-    console.log(document.querySelector('.page-wrapper').dataset.barbaNamespace)
     if (document.querySelector('.page-wrapper').dataset.barbaNamespace != 'story') return
 
     /* --- TOM CODE --- */
@@ -394,7 +393,10 @@ function barbaInit() {
     barba.wrapper.classList.remove('is-animating');
   });
   barba.hooks.enter(() => {
-    console.log('barba', barba)
+    window.Webflow && window.Webflow.destroy();
+    window.Webflow && window.Webflow.ready();
+    window.Webflow && window.Webflow.require( 'ix2' ).init();
+    document.dispatchEvent( new Event( 'readystatechange' ) );
     window.scrollTo(0, 0);
     init();
   });
