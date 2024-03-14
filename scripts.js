@@ -338,6 +338,58 @@ function init() {
       x: "0%",
       ease: "none"
     }, ">");
+    
+    gsap.set(".bio-description", {
+      opacity: 0,
+      y: "50%"
+    });
+    gsap.to(".bio-description", {
+      scrollTrigger: ".bio-description",
+      opacity: 1,
+      y: "0%"
+    });
+    gsap.set(".bio_arrow-flex", {
+      opacity: 0,
+      y: "50%"
+    });
+    gsap.to(".bio_arrow-flex", {
+      scrollTrigger: ".bio_arrow-flex",
+      opacity: 1,
+      y: "0%"
+    });
+    document.querySelectorAll(".story-setting").forEach((el, index) => {
+      gsap.set(el, {
+        opacity: 0,
+        x: "-50%"
+      });
+      gsap.to(el, {
+        scrollTrigger: el,
+        opacity: 1,
+        x: "0%"
+      });
+    });
+    document.querySelectorAll(".story-context").forEach((el, index) => {
+      gsap.set(el, {
+        opacity: 0,
+        y: "50%"
+      });
+      gsap.to(el, {
+        scrollTrigger: el,
+        opacity: 1,
+        y: "0%"
+      });
+    })
+    document.querySelectorAll(".story-card").forEach((el, index) => {
+      gsap.set(el, {
+        opacity: 0,
+        y: "50%"
+      });
+      gsap.to(el, {
+        scrollTrigger: el,
+        opacity: 1,
+        y: "0%"
+      });
+    })
   }, 0);
 }
 function barbaInit() {
