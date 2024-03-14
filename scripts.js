@@ -403,13 +403,12 @@ function barbaInit() {
   barba.hooks.enter(() => {
     // var Webflow = Webflow || [];
     // Webflow.push(function() {
-    //     $('html').attr('data-wf-page', '65c0a1dcf54093fc5e3ac94e');
-    //     window.Webflow && window.Webflow.destroy();
-    //     window.Webflow && window.Webflow.ready();
-    //     window.Webflow && window.Webflow.require('ix2').init();
-    //     document.dispatchEvent(new Event('readystatechange'));
+        $('html').attr('data-wf-page', '65c0a1dcf54093fc5e3ac94e');
+        window.Webflow && window.Webflow.destroy();
+        window.Webflow && window.Webflow.ready();
+        window.Webflow && window.Webflow.require('ix2').init();
+        document.dispatchEvent(new Event('readystatechange'));
     // });
-    document.dispatchEvent( new Event( 'readystatechange' ) );
     window.scrollTo(0, 0);
     init();
   });
