@@ -383,9 +383,6 @@ function barbaInit() {
   });
   barba.init({
     transitions: [{
-      beforeEnter({ current, next }) {
-        window.history.pushState(null, null, current.url.href);
-      },
       async leave(e) {
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
