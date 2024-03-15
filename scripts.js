@@ -143,6 +143,7 @@ function init() {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     function isInViewport(element) {
+      const offset = -100; // Default offset; adjust this value as needed
       const rect = element.getBoundingClientRect();
       return rect.top < (window.innerHeight / 4) && rect.bottom >= 0;
     }
@@ -223,7 +224,7 @@ function init() {
 
       function textTransition(section, triggerIndex) {
           const dates = [originalDateTLTL, '2050', '2080'];
-          const ages = [originalAgeTLTL, '50', '80'];
+          const ages = [originalAgeTLTL, '30', '60'];
           let settingsUpdates, originalDate, originalAge, originalSetting, storyDate, storyAge, sceneSetting;
 
           // Select the correct scene settings based on section
