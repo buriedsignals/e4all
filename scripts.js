@@ -144,7 +144,7 @@ function init() {
 
     function isInViewport(element) {
       const rect = element.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom >= 0;
+      return rect.top < (window.innerHeight / 4) && rect.bottom >= 0;
     }
 
     function imageTransition(urls, sectionId, triggerIndex) {
@@ -259,24 +259,31 @@ function init() {
             let triggerElement = document.getElementById(triggerElementId);
 
             if (triggerElement && isInViewport(triggerElement)) {
-              let index = (i / 2) - 1; // Calculate index based on trigger element
-
-              if (direction === 'up') {
-                if (i === 2) {
-                  // If at the first trigger, revert to the original image
-                  imageTransition([], section, -1);
-                  textTransition(section, -1);
+              if (!triggerElement.classList.contains('is-active')) {
+                let index = (i / 2) - 1; // Calculate index based on trigger element
+  
+                if (direction === 'up') {
+                  if (i === 2) {
+                    // If at the first trigger, revert to the original image
+                    imageTransition([], section, -1);
+                    textTransition(section, -1);
+                  } else {
+                    // If not at the first trigger but scrolling up, show the first image in the array
+                    imageTransition(images, section, 0);
+                    textTransition(section, 0);
+                  }
                 } else {
-                  // If not at the first trigger but scrolling up, show the first image in the array
-                  imageTransition(images, section, 0);
-                  textTransition(section, 0);
+                  // Logic for scrolling down: change the image based on the current index
+                  imageTransition(images, section, index);
+                  textTransition(section, index);
                 }
-              } else {
-                // Logic for scrolling down: change the image based on the current index
-                imageTransition(images, section, index);
-                textTransition(section, index);
+                for (let j = 4; j >= 2; j -= 2) {
+                  let triggerElementId = `${girlName}-${section.toLowerCase()}-${j}`;
+                  let triggerElement = document.getElementById(triggerElementId);
+                  triggerElement.classList.remove('is-active');
+                }
+                triggerElement.classList.add('is-active');
               }
-
               break; // Break after finding the first visible trigger
             }
           }
