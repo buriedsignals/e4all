@@ -223,7 +223,7 @@ function init() {
 
       function textTransition(section, triggerIndex) {
           const dates = [originalDateTLTL, '2050', '2080'];
-          const ages = [originalAgeTLTL, '50', '80'];
+          const ages = [originalAgeTLTL, '30', '60'];
           let settingsUpdates, originalDate, originalAge, originalSetting, storyDate, storyAge, sceneSetting;
 
           // Select the correct scene settings based on section
