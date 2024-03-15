@@ -143,8 +143,9 @@ function init() {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     function isInViewport(element) {
+      const offset = -100; // Default offset; adjust this value as needed
       const rect = element.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom >= 0;
+      return (rect.top + offset) < window.innerHeight && rect.bottom >= 0;
     }
 
     function imageTransition(urls, sectionId, triggerIndex) {
