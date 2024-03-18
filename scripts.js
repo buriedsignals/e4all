@@ -119,6 +119,8 @@ function init() {
 
     /* --- TOM CODE --- */
 
+    console.log('init tom code')
+
     const currentImageTLTL = document.querySelector('#tltl-image');
     const currentImageGL = document.querySelector('#gl-image');
       // Selecting TLTL text elements
