@@ -164,6 +164,7 @@ function init() {
     }
 
     window.addEventListener('scroll', () => {
+      console.log('is-scrolling')
       const girlDiv = document.querySelector('div[id^="story-"]');
       if (girlDiv) {
         const girlName = girlDiv.id.substring(6);
@@ -263,6 +264,7 @@ function init() {
 
             if (triggerElement && isInViewport(triggerElement)) {
               if (!triggerElement.classList.contains('is-active')) {
+                console.log('transition')
                 let index = (i / 2) - 1; // Calculate index based on trigger element
   
                 if (direction === 'up') {
