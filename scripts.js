@@ -158,7 +158,7 @@ function init() {
       console.log('transition disappear')
       setTimeout(() => {
         currentImage.srcset = srcsetToUse;
-        console.log('transition change image')
+        console.log('transition change image', srcsetToUse)
         setTimeout(() => {
           currentImage.style.opacity = 1;
           console.log('transition appear')
