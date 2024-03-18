@@ -295,7 +295,12 @@ function init() {
       }
     }
 
-    window.addEventListener('scroll', onScroll, false);
+
+    window.removeEventListener('scroll', onScroll, false);
+    setTimeout(() => {
+      window.addEventListener('scroll', onScroll, false);
+    }, 0);
+
 
     /* ---------------- */
       
@@ -467,7 +472,6 @@ function barbaInit() {
   barba.init({
     transitions: [{
       async leave(e) {
-        window.removeEventListener('scroll');
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
