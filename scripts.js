@@ -1,3 +1,5 @@
+let onScroll = () => {}
+
 function init() {
   setTimeout(() => {
     let triggers = ScrollTrigger.getAll();
@@ -162,7 +164,7 @@ function init() {
       }, 1000); // CSS transition duration
     }
 
-    function onScroll() {
+    onScroll = () => {
       const girlDiv = document.querySelector('div[id^="story-"]');
       if (girlDiv) {
         const girlName = girlDiv.id.substring(6);
