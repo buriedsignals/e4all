@@ -1,6 +1,7 @@
 function onScroll() {
+  if (!lastScrollTop) return 
   const girlDiv = document.querySelector('div[id^="story-"]');
-  if (girlDiv && lastScrollTop !== null) {
+  if (girlDiv) {
     const girlName = girlDiv.id.substring(6);
     let st = window.scrollY || document.documentElement.scrollTop;
     let direction = st > lastScrollTop ? 'down' : 'up';
@@ -467,7 +468,7 @@ function barbaInit() {
   barba.init({
     transitions: [{
       async leave(e) {
-        window.removeEventListener('scroll', onScroll, false);
+        window.removeEventListener('scroll', onScroll);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
