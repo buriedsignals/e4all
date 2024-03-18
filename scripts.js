@@ -256,6 +256,8 @@ function init() {
           storyDate.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDate;
           storyAge.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge;
           sceneSetting.textContent = triggerIndex >= 0 ? settingsUpdates[triggerIndex] : originalSetting;
+
+          console.log('age : ', storyAge.textContent, triggerIndex, ages[triggerIndex + 1], originalAge, triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge)
       }
 
     ['TLTL', 'GL'].forEach((section) => {
@@ -274,17 +276,17 @@ function init() {
                   console.log('transition up')
                   if (i === 2) {
                     // If at the first trigger, revert to the original image
-                    // imageTransition([], section, -1);
+                    imageTransition([], section, -1);
                     textTransition(section, -1);
                   } else {
                     // If not at the first trigger but scrolling up, show the first image in the array
-                    // imageTransition(images, section, 0);
+                    imageTransition(images, section, 0);
                     textTransition(section, 0);
                   }
                 } else {
                   console.log('transition down')
                   // Logic for scrolling down: change the image based on the current index
-                  // imageTransition(images, section, index);
+                  imageTransition(images, section, index);
                   textTransition(section, index);
                 }
                 for (let j = 4; j >= 2; j -= 2) {
@@ -295,7 +297,7 @@ function init() {
                 }
                 triggerElement.classList.add('is-active');
               }
-              // break; // Break after finding the first visible trigger
+              break; // Break after finding the first visible trigger
             }
           }
       });
