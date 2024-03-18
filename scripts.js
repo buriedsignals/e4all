@@ -1,5 +1,5 @@
 function onScroll() {
-  if (!lastScrollTop) return 
+  if (lastScrollTop == undefined) return 
   const girlDiv = document.querySelector('div[id^="story-"]');
   if (girlDiv) {
     const girlName = girlDiv.id.substring(6);
