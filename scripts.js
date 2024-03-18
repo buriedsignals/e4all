@@ -155,10 +155,13 @@ function init() {
       let srcsetToUse = triggerIndex >= 0 ? urls[triggerIndex] : (sectionId === "TLTL" ? originalImageTLTL : originalImageGL);
 
       currentImage.style.opacity = 0;
+      console.log('transition disappear')
       setTimeout(() => {
         currentImage.srcset = srcsetToUse;
+        console.log('transition change image')
         setTimeout(() => {
           currentImage.style.opacity = 1;
+          console.log('transition appear')
         }, 10); // Short delay for fade-in effect
       }, 1000); // CSS transition duration
     }
@@ -268,6 +271,7 @@ function init() {
                 let index = (i / 2) - 1; // Calculate index based on trigger element
   
                 if (direction === 'up') {
+                  console.log('transition up')
                   if (i === 2) {
                     // If at the first trigger, revert to the original image
                     imageTransition([], section, -1);
@@ -278,6 +282,7 @@ function init() {
                     textTransition(section, 0);
                   }
                 } else {
+                  console.log('transition down')
                   // Logic for scrolling down: change the image based on the current index
                   imageTransition(images, section, index);
                   textTransition(section, index);
@@ -286,6 +291,7 @@ function init() {
                   let triggerElementId = `${girlName}-${section.toLowerCase()}-${j}`;
                   let triggerElement = document.getElementById(triggerElementId);
                   triggerElement.classList.remove('is-active');
+                  console.log('remove class')
                 }
                 triggerElement.classList.add('is-active');
               }
