@@ -127,10 +127,13 @@ function init() {
       const storyDateTLTL = document.querySelector('#story-date-tltl');
       const storyAgeTLTL = document.querySelector('#story-age-tltl');
       const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
+      console.log(storyAgeTLTL)
       // Selecting GL text elements
       const storyDateGL = document.querySelector('#story-date-gl');
       const storyAgeGL = document.querySelector('#story-age-gl');
       const sceneSettingGL = document.querySelector('#scene-setting-gl');
+      console.log(storyAgeGL)
+
 
       // Store the original srcsets and text content for TLTL and GL elements
       const originalImageTLTL = currentImageTLTL.srcset;
