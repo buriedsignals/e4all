@@ -453,7 +453,6 @@ function barbaInit() {
     });
   }
   barba.hooks.before(() => {
-    window.removeEventListener('scroll', onScroll, false);
     document.querySelector('html').classList.add('is-transitioning');
     barba.wrapper.classList.add('is-animating');
   });
@@ -467,7 +466,8 @@ function barbaInit() {
   });
   barba.init({
     transitions: [{
-      async leave(e) {
+      async leave(e) {    
+        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
