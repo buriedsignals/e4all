@@ -467,7 +467,6 @@ function barbaInit() {
   barba.init({
     transitions: [{
       async leave(e) {    
-        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
@@ -477,6 +476,7 @@ function barbaInit() {
         }
       },
       enter(e) {
+        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
