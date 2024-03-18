@@ -119,20 +119,16 @@ function init() {
 
     /* --- TOM CODE --- */
 
-    console.log('init tom code')
-
     const currentImageTLTL = document.querySelector('#tltl-image');
     const currentImageGL = document.querySelector('#gl-image');
       // Selecting TLTL text elements
       const storyDateTLTL = document.querySelector('#story-date-tltl');
       const storyAgeTLTL = document.querySelector('#story-age-tltl');
       const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
-      console.log(storyAgeTLTL)
       // Selecting GL text elements
       const storyDateGL = document.querySelector('#story-date-gl');
       const storyAgeGL = document.querySelector('#story-age-gl');
       const sceneSettingGL = document.querySelector('#scene-setting-gl');
-      console.log(storyAgeGL)
 
 
       // Store the original srcsets and text content for TLTL and GL elements
@@ -158,19 +154,15 @@ function init() {
       let srcsetToUse = triggerIndex >= 0 ? urls[triggerIndex] : (sectionId === "TLTL" ? originalImageTLTL : originalImageGL);
 
       currentImage.style.opacity = 0;
-      console.log('transition disappear')
       setTimeout(() => {
         currentImage.srcset = srcsetToUse;
-        console.log('transition change image', srcsetToUse)
         setTimeout(() => {
           currentImage.style.opacity = 1;
-          console.log('transition appear')
         }, 10); // Short delay for fade-in effect
       }, 1000); // CSS transition duration
     }
 
     function onScroll() {
-      console.log('is-scrolling')
       const girlDiv = document.querySelector('div[id^="story-"]');
       if (girlDiv) {
         const girlName = girlDiv.id.substring(6);
@@ -259,11 +251,7 @@ function init() {
           storyDate.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDate;
           storyAge.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge;
           sceneSetting.textContent = triggerIndex >= 0 ? settingsUpdates[triggerIndex] : originalSetting;
-          
-          console.log('El : ', storyAge)
-
-          console.log('age : ', storyAge.textContent, triggerIndex, ages[triggerIndex + 1], originalAge, triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge)
-      }
+          }
 
     ['TLTL', 'GL'].forEach((section) => {
           let images = section === 'TLTL' ? imagesTLTL : imagesGL;
@@ -274,11 +262,9 @@ function init() {
 
             if (triggerElement && isInViewport(triggerElement)) {
               if (!triggerElement.classList.contains('is-active')) {
-                console.log('transition')
                 let index = (i / 2) - 1; // Calculate index based on trigger element
   
                 if (direction === 'up') {
-                  console.log('transition up')
                   if (i === 2) {
                     // If at the first trigger, revert to the original image
                     imageTransition([], section, -1);
@@ -289,7 +275,6 @@ function init() {
                     textTransition(section, 0);
                   }
                 } else {
-                  console.log('transition down')
                   // Logic for scrolling down: change the image based on the current index
                   imageTransition(images, section, index);
                   textTransition(section, index);
@@ -298,7 +283,6 @@ function init() {
                   let triggerElementId = `${girlName}-${section.toLowerCase()}-${j}`;
                   let triggerElement = document.getElementById(triggerElementId);
                   triggerElement.classList.remove('is-active');
-                  console.log('remove class')
                 }
                 triggerElement.classList.add('is-active');
               }
