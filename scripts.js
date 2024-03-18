@@ -1,6 +1,50 @@
 
 
 function onScroll() {
+
+
+  const currentImageTLTL = document.querySelector('#tltl-image');
+  const currentImageGL = document.querySelector('#gl-image');
+    // Selecting TLTL text elements
+    const storyDateTLTL = document.querySelector('#story-date-tltl');
+    const storyAgeTLTL = document.querySelector('#story-age-tltl');
+    const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
+    // Selecting GL text elements
+    const storyDateGL = document.querySelector('#story-date-gl');
+    const storyAgeGL = document.querySelector('#story-age-gl');
+    const sceneSettingGL = document.querySelector('#scene-setting-gl');
+
+
+    // Store the original srcsets and text content for TLTL and GL elements
+    const originalImageTLTL = currentImageTLTL.srcset;
+    const originalImageGL = currentImageGL.srcset;
+    const originalDateTLTL = storyDateTLTL.textContent;
+    const originalAgeTLTL = storyAgeTLTL.textContent;
+    const originalSceneSettingTLTL = sceneSettingTLTL.textContent;
+    const originalDateGL = storyDateGL.textContent;
+    const originalAgeGL = storyAgeGL.textContent;
+    const originalSceneSettingGL = sceneSettingGL.textContent;
+
+  let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+  function isInViewport(element) {
+    const offset = -100; // Default offset; adjust this value as needed
+    const rect = element.getBoundingClientRect();
+    return rect.top < (window.innerHeight / 4) && rect.bottom >= 0;
+  }
+
+  function imageTransition(urls, sectionId, triggerIndex) {
+    let currentImage = sectionId === "TLTL" ? currentImageTLTL : currentImageGL;
+    let srcsetToUse = triggerIndex >= 0 ? urls[triggerIndex] : (sectionId === "TLTL" ? originalImageTLTL : originalImageGL);
+
+    currentImage.style.opacity = 0;
+    setTimeout(() => {
+      currentImage.srcset = srcsetToUse;
+      setTimeout(() => {
+        currentImage.style.opacity = 1;
+      }, 10); // Short delay for fade-in effect
+    }, 1000); // CSS transition duration
+  }
   const girlDiv = document.querySelector('div[id^="story-"]');
   if (girlDiv) {
     const girlName = girlDiv.id.substring(6);
@@ -253,49 +297,6 @@ function init() {
     if (document.querySelector('.page-wrapper').dataset.barbaNamespace != 'story') return
 
     /* --- TOM CODE --- */
-
-    const currentImageTLTL = document.querySelector('#tltl-image');
-    const currentImageGL = document.querySelector('#gl-image');
-      // Selecting TLTL text elements
-      const storyDateTLTL = document.querySelector('#story-date-tltl');
-      const storyAgeTLTL = document.querySelector('#story-age-tltl');
-      const sceneSettingTLTL = document.querySelector('#scene-setting-tltl');
-      // Selecting GL text elements
-      const storyDateGL = document.querySelector('#story-date-gl');
-      const storyAgeGL = document.querySelector('#story-age-gl');
-      const sceneSettingGL = document.querySelector('#scene-setting-gl');
-
-
-      // Store the original srcsets and text content for TLTL and GL elements
-      const originalImageTLTL = currentImageTLTL.srcset;
-      const originalImageGL = currentImageGL.srcset;
-      const originalDateTLTL = storyDateTLTL.textContent;
-      const originalAgeTLTL = storyAgeTLTL.textContent;
-      const originalSceneSettingTLTL = sceneSettingTLTL.textContent;
-      const originalDateGL = storyDateGL.textContent;
-      const originalAgeGL = storyAgeGL.textContent;
-      const originalSceneSettingGL = sceneSettingGL.textContent;
-
-    let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    function isInViewport(element) {
-      const offset = -100; // Default offset; adjust this value as needed
-      const rect = element.getBoundingClientRect();
-      return rect.top < (window.innerHeight / 4) && rect.bottom >= 0;
-    }
-
-    function imageTransition(urls, sectionId, triggerIndex) {
-      let currentImage = sectionId === "TLTL" ? currentImageTLTL : currentImageGL;
-      let srcsetToUse = triggerIndex >= 0 ? urls[triggerIndex] : (sectionId === "TLTL" ? originalImageTLTL : originalImageGL);
-
-      currentImage.style.opacity = 0;
-      setTimeout(() => {
-        currentImage.srcset = srcsetToUse;
-        setTimeout(() => {
-          currentImage.style.opacity = 1;
-        }, 10); // Short delay for fade-in effect
-      }, 1000); // CSS transition duration
-    }
 
     window.addEventListener('scroll', onScroll, false);
 
