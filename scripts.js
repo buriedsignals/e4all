@@ -461,6 +461,7 @@ function barbaInit() {
     barba.wrapper.classList.remove('is-animating');
   });
   barba.hooks.enter(() => {
+    window.removeEventListener('scroll', onScroll, false);
     window.scrollTo(0, 0);
     init();
   });
@@ -476,7 +477,6 @@ function barbaInit() {
         }
       },
       enter(e) {
-        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
