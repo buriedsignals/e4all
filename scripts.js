@@ -256,6 +256,8 @@ function init() {
           storyDate.textContent = triggerIndex >= 0 ? dates[triggerIndex + 1] : originalDate;
           storyAge.textContent = triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge;
           sceneSetting.textContent = triggerIndex >= 0 ? settingsUpdates[triggerIndex] : originalSetting;
+          
+          console.log('El : ', storyAge)
 
           console.log('age : ', storyAge.textContent, triggerIndex, ages[triggerIndex + 1], originalAge, triggerIndex >= 0 ? ages[triggerIndex + 1] : originalAge)
       }
