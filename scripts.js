@@ -169,7 +169,7 @@ function init() {
       }, 1000); // CSS transition duration
     }
 
-    window.addEventListener('scroll', () => {
+    function onScroll() {
       console.log('is-scrolling')
       const girlDiv = document.querySelector('div[id^="story-"]');
       if (girlDiv) {
@@ -309,7 +309,9 @@ function init() {
 
         lastScrollTop = st <= 0 ? 0 : st; // Update lastScrollTop for the next scroll event
       }
-    }, false);
+    }
+
+    window.addEventListener('scroll', onScroll, false);
 
     /* ---------------- */
       
@@ -481,6 +483,7 @@ function barbaInit() {
   barba.init({
     transitions: [{
       async leave(e) {
+        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
@@ -490,6 +493,7 @@ function barbaInit() {
         }
       },
       enter(e) {
+        window.removeEventListener('scroll', onScroll, false);
         if (e.trigger.parentNode == undefined) return
         const el = e.trigger.parentNode.parentNode
         if (el.classList.contains('story-card')) {
