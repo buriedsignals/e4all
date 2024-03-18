@@ -295,12 +295,7 @@ function init() {
       }
     }
 
-
-    window.removeEventListener('scroll', onScroll, false);
-    setTimeout(() => {
-      window.addEventListener('scroll', onScroll, false);
-    }, 0);
-
+    window.addEventListener('scroll', onScroll, false);
 
     /* ---------------- */
       
@@ -466,6 +461,7 @@ function barbaInit() {
     barba.wrapper.classList.remove('is-animating');
   });
   barba.hooks.enter(() => {
+    window.removeEventListener('scroll', onScroll, false);
     window.scrollTo(0, 0);
     init();
   });
