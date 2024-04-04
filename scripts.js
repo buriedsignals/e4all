@@ -121,8 +121,46 @@ function init() {
 
     /* --- TOM CODE --- */
 
-    const currentImageTLTL = document.querySelector('#tltl-image');
-    const currentImageGL = document.querySelector('#gl-image');
+    const imageUrls = [
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34ab414391d66eeb200_ayotola_tltl_2.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f349595807266e8de4f2_ayotola_tltl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a7505cd1896f6c899_ayotola_gl_2.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f34a4eadbe338452aa7f_ayotola_gl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543dc56d9428dea74_carla_tltl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f355e3e50611260717a3_carla_tltl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f356ccc4cb9c461e1697_carla_gl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f35543ec5cef0aaa410a_carla_gl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3649878795361febe6b_shu_tltl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f364acd492563da6fdef_shu_tltl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f3642acb33427e4d4df3_shu_gl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f365ea46f8e32a736a9b_shu_gl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c3ab226220894f482_samiha_gl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37cfc8b90e05abdc3a4_samiha_gl_3.webp',
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c8f26f56121a2268a_samiha_tltl_2.webp', 
+      'https://uploads-ssl.webflow.com/65c0a1dcf54093fc5e3ac910/65c0f37c520cbe484ca10f75_samiha_tltl_3.webp'
+    ];
+    
+    let imagesLoaded = 0;
+    const totalImages = imageUrls.length;
+    
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.onload = () => {
+        imagesLoaded++;
+        if (imagesLoaded === totalImages) {
+          // All images are loaded, execute the rest of the script
+          console.log('All images preloaded');
+          // Execute the rest of your script here or call the next function
+          initializeApplication();
+        }
+      };
+      img.src = url;
+    });
+
+    function initializeApplication() {
+      // The rest of your code goes here, e.g., adding event listeners, initializing animations, etc.
+      const currentImageTLTL = document.querySelector('#tltl-image');
+      const currentImageGL = document.querySelector('#gl-image');
       // Selecting TLTL text elements
       const storyDateTLTL = document.querySelector('#story-date-tltl');
       const storyAgeTLTL = document.querySelector('#story-age-tltl');
@@ -298,6 +336,7 @@ function init() {
     }
 
     window.addEventListener('scroll', onScroll, false);
+    }
 
     /* ---------------- */
       
